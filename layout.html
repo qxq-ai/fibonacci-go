@@ -15,7 +15,7 @@
 	</head>
 	<body>
 
-		<header class="shadow">
+		<header class="shadow z-3">
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col">
@@ -43,45 +43,44 @@
 			</div>
 		</header>
 
-		<div class="container-fluid main-layout">
+		<div class="container-fluid main-layout p-0">
 			<div class="d-flex h-100">
-				<main>
-					<div>
-						<footer>
-							<div>
-								<div>
-									<div class="chat-ui">
-										<textarea></textarea>
-										<div>
-											<div>
-												<div class="dropdown">
-													<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-														Dropdown button
-													</button>
-													<ul class="dropdown-menu">
-														<li><a class="dropdown-item" href="#">Action</a></li>
-														<li><a class="dropdown-item" href="#">Another action</a></li>
-														<li><a class="dropdown-item" href="#">Something else here</a></li>
-													</ul>
-												</div>
-											</div>
-											<button></button>
-										</div>
+				<main class="width-size">
+					<div class="main-container">
+					</div>
+					<footer class="fixed-bottom z-3 pt-3 pb-3 width-size">
+						<div class="d-flex justify-content-between">
+							
+							<div class="chat-ui">
+								<textarea></textarea>
+								<div class="tools-ui">
+									<div class="dropdown chat-options">
+										<button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+											<img src="assets/img/gear.svg">
+										</button>
+										<ul class="dropdown-menu">
+											<li><a class="dropdown-item" href="#">Action</a></li>
+											<li><a class="dropdown-item" href="#">Another action</a></li>
+											<li><a class="dropdown-item" href="#">Something else here</a></li>
+										</ul>
 									</div>
-								</div>
-								<div>
-									<button>
-										<img src="">
-										<span>Connect new data source</span>
-									</button>
-									<button>
-										<img src="">
-										<span>Update existing dataset</span>
+									<button class="btn chat-submit">
+										<img src="assets/img/send.svg">
 									</button>
 								</div>
 							</div>
-						</footer>
-					</div>
+							<div class="actions-buttons">
+								<button class="btn">
+									<img src="assets/img/plus.svg">
+									<span>Connect new data source</span>
+								</button>
+								<button class="btn">
+									<img src="assets/img/update.svg">
+									<span>Update existing dataset</span>
+								</button>
+							</div>
+						</div>
+					</footer>
 				</main>
 				<aside>
 					<!--<nav class="d-flex align-items-center">
