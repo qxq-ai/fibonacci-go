@@ -1,0 +1,9 @@
+Commands available in the makefile
+build
+    This command is to generate the webassambly file from a go file, variable GO_FILE is for the name of the go file and DIRECTORY is the directory where it is located
+
+    make build  GO_FILE=api.go DIRECTORY=/rendrHtlm
+server
+    This command is to start the server, variable DIRECTORY is to search or take that path as the root, there it will look for the index.html file
+
+    make server DIRECTORY=renderHtml

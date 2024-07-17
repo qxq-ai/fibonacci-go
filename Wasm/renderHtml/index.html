@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <meta charset="UTF-8">
+    <title>Principal page</title>
+    <script src="wasm_exec.js"></script> <!-- Necesario para cargar el WASM -->
+</head>
+<body>
+    <button id="cargarContenido">Cargar Contenido HTML</button>
+    <script>
+        document.getElementById('cargarContenido').addEventListener('click', function() {
+            fetch('/leer-html?nombreArchivo=app.html')
+                .then(function(response) {
+                    if (!response.ok) {
+                        throw new Error('Error al obtener el archivo');
+                    }
+                    return response.text();
+                })
+                .then(function(data) {
+                    var div = $('<div id="contentapp" class="containerapp"></div>');
+                    div.html(data);
+                    $('#application').append(div);
+                    // document.getElementById('application').innerHTML = data;
+                })
+                .catch(function(error) {
+                    console.error('Error:', error);
+                });
+        });
+    </script>
+    <div id="application">
+
+    </div>
+</body>
+</html>

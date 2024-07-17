@@ -1,0 +1,45 @@
+<div class="app">
+    <h1>Communication with go</h1>
+    <button id="btn">click to call endpoint</button>
+    <p id="respuesta"></p>
+</div>
+<script>
+    $(document).ready(function() {
+        console.log('ready');
+        const go = new Go();
+        let mod, inst;
+        WebAssembly.instantiateStreaming(fetch("main.wasm"), go.importObject).then(async (result) => {
+            mod = result.module;
+            inst = result.instance;
+            await go.run(inst);
+        
+
+        });
+        $('#btn').on('click', function() {
+            console.log('click');
+            const response = sayHello();
+            console.log(response);
+            $('#respuesta').text(response);
+        });
+    });
+
+</script>
+<style>
+    .app{
+        
+        h1 {
+            color: blue;
+        }
+        button {
+            background-color: blue;
+            color: white;
+            padding: 10px;
+            border: solid 1px blue;
+            cursor: pointer;
+        }
+        p {
+            color: green;
+        }
+    }
+</style>
+

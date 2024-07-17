@@ -1,0 +1,21 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="wasm_exec.js"></script> <!-- Necesario para cargar el WASM -->
+    <meta charset="utf-8">
+    <title>Go WebAssembly Example</title>
+</head>
+<body>
+    <script>
+        async function loadWasm() {
+            const go = new Go();
+            const wasmModule = await WebAssembly.instantiateStreaming(fetch("main.wasm"), go.importObject);
+            go.run(wasmModule.instance);
+        }
+
+        loadWasm();
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/go/1.16.3/go.min.js"></script>
+</body>
+</html>
