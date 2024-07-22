@@ -2,8 +2,15 @@ Commands available in the makefile
 build
     This command is to generate the webassambly file from a go file, variable GO_FILE is for the name of the go file and DIRECTORY is the directory where it is located
 
-    make build  GO_FILE=api.go DIRECTORY=/rendrHtlm
+    make build GO_FILE=api.go DIRECTORY=renderHtml
 server
     This command is to start the server, variable DIRECTORY is to search or take that path as the root, there it will look for the index.html file
 
-    make server DIRECTORY=renderHtml
+    make server.go DIRECTORY=renderHtml
+setup
+    Install Docker Desktop
+    Create image
+    Ensure you are in a workspace, using VScode or some other IDE
+    Navigate to WASM
+    make build GO_FILE=api.go DIRECTORY=renderHtml
+    make server.go DIRECTORY=renderHtml

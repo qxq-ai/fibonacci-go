@@ -1,0 +1,13 @@
+{
+    "name": "QXQ Fibonacci Go DevContainer",
+    "dockerFile": "Dockerfile",
+    "context": "..",
+    "settings": {
+      "terminal.integrated.shell.linux": "/bin/bash"
+    },
+    "extensions": [
+      "golang.go",
+      "ms-vscode-remote.remote-containers"
+    ],
+    // "postCreateCommand": "go mod tidy"
+  }
