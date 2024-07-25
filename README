@@ -13,4 +13,4 @@ setup
     Ensure you are in a workspace, using VScode or some other IDE
     Navigate to WASM
     make build GO_FILE=api.go DIRECTORY=renderHtml
-    make server.go DIRECTORY=renderHtml
+    go run server.go DIRECTORY=renderHtml
