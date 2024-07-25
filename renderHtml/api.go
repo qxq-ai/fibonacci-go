@@ -14,5 +14,5 @@ func main() {
 }
 
 func sayHello(this js.Value, args []js.Value) interface{} {
-	return js.ValueOf("layout.html")
+	return js.ValueOf("	layout.html")
 }
