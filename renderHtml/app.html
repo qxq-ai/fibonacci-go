@@ -17,18 +17,30 @@
         });
         $('#btn').on('click', function() {
             console.log('click');
-            const response = sayHello();
-            console.log(response);
-            var xhr= new XMLHttpRequest();
-            xhr.open('GET', response, true);
-            xhr.onreadystatechange= function() {
-                if (this.readyState!==4) return;
-                if (this.status!==200) return; // or whatever error handling you want
-                $('#respuesta').html(this.responseText);
-            };
-            xhr.send();
+            Load('http://localhost:8080/layout.html','#respuesta');
         });
     });
+
+    async function Load(requestUrl, target) {
+        try {
+            const response = await loader(requestUrl)
+            const reader = response.body.getReader()
+            let done = false
+            let data = ''
+            while (!done) {
+                const read = await reader.read()
+                done = read && read.done
+                if (!done) {
+                    console.log('Read', read.value.length, 'bytes')
+                    data += new TextDecoder().decode(read.value)
+                }
+            }
+            $(target).html(data)
+
+        } catch (err) {
+            console.error('Caught exception', err)
+        }
+    }
 
 </script>
 <style>
