@@ -1,64 +1,65 @@
-<div class="app">
-    <h1>Communication with go</h1>
-    <button id="btn">click to call endpoint</button>
-    <p id="respuesta"></p>
-</div>
-<script>
-    $(document).ready(function() {
-        console.log('ready');
-        const go = new Go();
-        let mod, inst;
-        WebAssembly.instantiateStreaming(fetch("main.wasm"), go.importObject).then(async (result) => {
-            mod = result.module;
-            inst = result.instance;
-            await go.run(inst);
-        
+<html lang="en">
+    <div class="app">
+        <button id="btn">File Explorer</button>
+        <p id="respuesta"></p>
+    </div>
 
-        });
-        $('#btn').on('click', function() {
-            console.log('click');
-            Load('http://localhost:8080/layout.html','#respuesta');
-        });
-    });
+    <script>
+        $(document).ready(function() {
+            console.log('ready');
+            const go = new Go();
+            let mod, inst;
+            WebAssembly.instantiateStreaming(fetch("main.wasm"), go.importObject).then(async (result) => {
+                mod = result.module;
+                inst = result.instance;
+                await go.run(inst);
+            
 
-    async function Load(requestUrl, target) {
-        try {
-            const response = await loader(requestUrl)
-            const reader = response.body.getReader()
-            let done = false
-            let data = ''
-            while (!done) {
-                const read = await reader.read()
-                done = read && read.done
-                if (!done) {
-                    console.log('Read', read.value.length, 'bytes')
-                    data += new TextDecoder().decode(read.value)
+            });
+            $('#btn').on('click', function() {
+                console.log('click');
+                Load('http://localhost:8080/apps/file_explorer.html','#respuesta');
+            });
+        });
+
+        async function Load(requestUrl, target) {
+            try {
+                const response = await loader(requestUrl)
+                const reader = response.body.getReader()
+                let done = false
+                let data = ''
+                while (!done) {
+                    const read = await reader.read()
+                    done = read && read.done
+                    if (!done) {
+                        console.log('Read', read.value.length, 'bytes')
+                        data += new TextDecoder().decode(read.value)
+                    }
                 }
+                $(target).html(data)
+
+            } catch (err) {
+                console.error('Caught exception', err)
             }
-            $(target).html(data)
+        }
 
-        } catch (err) {
-            console.error('Caught exception', err)
+    </script>
+    <style>
+        .app{
+            
+            h1 {
+                color: blue;
+            }
+            button {
+                background-color: blue;
+                color: white;
+                padding: 10px;
+                border: solid 1px blue;
+                cursor: pointer;
+            }
+            p {
+                color: green;
+            }
         }
-    }
-
-</script>
-<style>
-    .app{
-        
-        h1 {
-            color: blue;
-        }
-        button {
-            background-color: blue;
-            color: white;
-            padding: 10px;
-            border: solid 1px blue;
-            cursor: pointer;
-        }
-        p {
-            color: green;
-        }
-    }
 </style>
-
+</html>
