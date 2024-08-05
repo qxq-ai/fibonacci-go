@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Página de prueba</title>
+    <script src="wasm_exec.js"></script> <!-- Necesario para cargar el WASM -->
+</head>
+<body>
+    <h1>Communication with go</h1>
+    <button id="btn">click to call endpoint</button>
+    <p id="respuesta"></p>
+
+    <script>
+        const go = new Go();
+        let mod, inst;
+        WebAssembly.instantiateStreaming(fetch("main.wasm"), go.importObject).then(async (result) => {
+            mod = result.module;
+            inst = result.instance;
+            await go.run(inst);
+           
+
+        });
+
+        document.getElementById('btn').addEventListener('click', function() {
+            document.getElementById('respuesta').innerText = sayHello();
+        });
+    </script>
+</body>
+</html>
